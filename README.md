@@ -1,3 +1,3 @@
-echo "print('Hello DevOps')" > app.py
-echo "echo 'Running test...'" > test.sh
-chmod +x test.sh
+# Jenkins Pipeline Demo
+
+This is a sample project to test Jenkins pipeline setup.

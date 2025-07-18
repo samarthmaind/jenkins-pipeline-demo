@@ -1,27 +1,26 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo "Cloning code from GitHub..."
+                git branch: 'main', url: 'https://github.com/samarthmaind/jenkins-pipeline-demo.git'
+            }
+        }
 
-    stage('Clone Repository') {
-      steps {
-        echo "Cloning code from GitHub..."
-        git branch: 'main', url: 'https://github.com/samarthmaind/jenkins-pipeline-demo.git'
-      }
+        stage('Build') {
+            steps {
+                echo "Running build stage..."
+                sh 'python3 app.py'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running test stage..."
+                sh 'chmod +x test.sh && ./test.sh'
+            }
+        }
     }
-
-    stage('Build') {
-      steps {
-        echo "Building the application..."
-        sh 'echo Simulating build step'
-      }
-    }
-
-    stage('Test') {
-      steps {
-        echo "Running tests..."
-        sh './test.sh'
-      }
-    }
-  }
 }
